@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script defer src="./index.js"></script>
+  <link rel="stylesheet" href="./style.css">
+
+  <title>fuel app</title>
+</head>
+
+<body>
+  <div class="flex-wrapper">
+    <form action="" name="onlyForm">
+      <!-- <legend>asd</legend> -->
+
+      <div class="field"> 
+        <p>укажите день заправки</p>
+
+        <input type="date" value="2015-05-05">
+      </div>
+
+      <div class="field"> 
+        <p>укажите количество топлива</p>
+
+        <input type="number" placeholder="количество топлива" value="25">
+      </div>
+
+      <div class="field"> 
+        <p>укажите итоговую стоимость</p>
+
+        <input type="number" placeholder="итоговая стоимость" value="1500">
+      </div>
+
+      <div class="field"> 
+        <p>укажите текущий пробег</p>
+
+        <input type="number" placeholder="текущий пробег" value="156000">
+      </div>
+
+      <button id="btn" type="submit">добавить данные о заправке</button>
+    </form>
+  </div>
+
+  <div class="content" id="content">
+
+  </div>
+</body>
+</html>

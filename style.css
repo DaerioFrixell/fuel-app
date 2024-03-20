@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.8rem;
+  margin: .5rem;
+}
+
+
+.flex-wrapper {
+}
+
+.content {
+  margin: 3rem 0;
+}
