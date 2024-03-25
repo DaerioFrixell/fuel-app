@@ -44,11 +44,20 @@ const toSubmit = (e) => {
     mileage: null,
   };
 
-
   const initObjectFormKeys = Object.keys(initObjectForm)
 
   for (let i = 0; i < initObjectFormKeys.length; i++) {
-    initObjectForm[initObjectFormKeys[i]] = arrayForm[i].value
+    initObjectForm[initObjectFormKeys[i]] = arrayForm[i].value;
+
+    if (locStorData) {
+      const isMileageField = initObjectFormKeys[i] === "mileage";
+      const isSmallerValue = Number(arrayForm[i].value) < Number(locStorData[locStorData.length - 1].mileage);
+
+      if (isMileageField && isSmallerValue) {
+        alert("ввел слишком маленький пробег");
+        return;
+      }
+    }
   }
 
   if (locStorData) {
@@ -69,15 +78,26 @@ const submitButton = document.getElementById("btn");
 submitButton.addEventListener("click", toSubmit);
 
 if (locStorData) {
-  locStorData.forEach(el => {
+  let currentMileage = [];
+
+  locStorData.forEach((el, index) => {
     /** 
      * Узел для одного объекта с данными.
      */
     const itemWrapper = document.createElement("div");
+    itemWrapper.className = "item-wrapper";
     content.append(itemWrapper);
+
+
 
     const objKeys = Object.keys(el);
     const objVal = Object.values(el);
+
+    if (index === 0) {
+      currentMileage.push(0)
+    } else {
+      currentMileage.push(locStorData[index].mileage - locStorData[index - 1].mileage);
+    }
 
     for (let i = 0; i < objKeys.length; i++) {
       const fieldKey = document.createElement('span');
@@ -86,12 +106,61 @@ if (locStorData) {
       fieldKey.innerHTML = objKeys[i] + ": ";
       fieldValue.innerHTML = objVal[i] + " ";
 
-      if (objKeys[i] === "fuelCount") fieldValue.innerHTML = objVal[i] + "л ";
-      if (objKeys[i] === "price") fieldValue.innerHTML = objVal[i] + "р ";
-      if (objKeys[i] === "mileage") fieldValue.innerHTML = objVal[i] + "км ";
+      fieldKey.className = "item-key"
+      fieldValue.className = "item-value"
 
-      itemWrapper.append(fieldKey);
-      itemWrapper.append(fieldValue);
+      const fieldMileageCalc = document.createElement('span');
+      const fieldCountVbyMil = document.createElement('span');
+
+      if (objKeys[i] === "day") {
+        const item = document.createElement("div");
+        item.className = "item";
+        itemWrapper.append(item);
+
+        item.append(fieldKey);
+        item.append(fieldValue);
+      }
+
+      if (objKeys[i] === "fuelCount") {
+        const item = document.createElement("div");
+        item.className = "item";
+        itemWrapper.append(item);
+
+        let calcLitr = currentMileage[index] / objVal[i];
+
+        fieldCountVbyMil.innerHTML = "На 1 литр: " + Math.round(calcLitr) + "км ";
+        itemWrapper.append(fieldCountVbyMil);
+
+        fieldValue.innerHTML = objVal[i] + "л ";
+
+        item.append(fieldKey);
+        item.append(fieldValue);
+      }
+
+      if (objKeys[i] === "price") {
+        const item = document.createElement("div");
+        item.className = "item";
+        itemWrapper.append(item);
+
+        fieldValue.innerHTML = objVal[i] + "р ";
+        item.append(fieldKey);
+        item.append(fieldValue);
+      }
+
+      if (objKeys[i] === "mileage") {
+        const item = document.createElement("div");
+        item.className = "item";
+        itemWrapper.append(item);
+
+        fieldValue.innerHTML = objVal[i] + "км ";
+        fieldMileageCalc.innerHTML = "проехал: " + currentMileage[index] + "км";
+
+        itemWrapper.append(fieldMileageCalc);
+
+        item.append(fieldKey);
+        item.append(fieldValue);
+      }
+
     }
   });
 }

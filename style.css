@@ -13,9 +13,32 @@ body {
 }
 
 
+/*********** В HTML ***********/
+
 .flex-wrapper {
+  
 }
 
 .content {
   margin: 3rem 0;
+}
+
+/*********** ГЕНЕРИРУЮТСЯ ***********/
+
+.item-wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 18rem);
+}
+
+.item {
+  width: 18rem;
+  margin-bottom: 2rem;
+  /* border: 1px solid red; */
+}
+
+.item-key {
+}
+
+.item-value {
+
 }
