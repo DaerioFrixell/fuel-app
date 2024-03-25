@@ -1,5 +1,20 @@
 "use strict";
 
+const allMonthes = [
+  'jan',
+  'feb',
+  'mar',
+  'apr',
+  'may',
+  'june',
+  'july',
+  'aug',
+  'sept',
+  'oct',
+  'nov',
+  'dec',
+];
+
 /**
  * Объект формы.
  */
@@ -78,6 +93,9 @@ const submitButton = document.getElementById("btn");
 submitButton.addEventListener("click", toSubmit);
 
 if (locStorData) {
+  /**
+   * Разница по киллометражу между каждыми объектами.
+   */
   let currentMileage = [];
 
   locStorData.forEach((el, index) => {
@@ -87,8 +105,6 @@ if (locStorData) {
     const itemWrapper = document.createElement("div");
     itemWrapper.className = "item-wrapper";
     content.append(itemWrapper);
-
-
 
     const objKeys = Object.keys(el);
     const objVal = Object.values(el);
@@ -112,59 +128,47 @@ if (locStorData) {
       const fieldMileageCalc = document.createElement('span');
       const fieldCountVbyMil = document.createElement('span');
 
-      if (objKeys[i] === "day") {
-        const item = document.createElement("div");
-        item.className = "item";
-        itemWrapper.append(item);
+      const item = document.createElement("div");
+      item.className = "item";
+      itemWrapper.append(item);
 
-        item.append(fieldKey);
-        item.append(fieldValue);
+      item.append(fieldKey);
+      item.append(fieldValue);
+
+      if (objKeys[i] === "day") {
+        const date = new Date(objVal[i])
+
+        const day = date.getDate();
+
+        const monthNumber = date.getMonth();
+        const month = allMonthes[monthNumber];
+
+        const fullYear = date.getFullYear();
+        const year = String(fullYear).slice(2)
+
+        const finallyDate = `${day} ${month} ${year}`
+        fieldValue.innerHTML = finallyDate
       }
 
       if (objKeys[i] === "fuelCount") {
-        const item = document.createElement("div");
-        item.className = "item";
-        itemWrapper.append(item);
-
         let calcLitr = currentMileage[index] / objVal[i];
 
         fieldCountVbyMil.innerHTML = "На 1 литр: " + Math.round(calcLitr) + "км ";
         itemWrapper.append(fieldCountVbyMil);
 
         fieldValue.innerHTML = objVal[i] + "л ";
-
-        item.append(fieldKey);
-        item.append(fieldValue);
       }
 
-      if (objKeys[i] === "price") {
-        const item = document.createElement("div");
-        item.className = "item";
-        itemWrapper.append(item);
+      if (objKeys[i] === "price") fieldValue.innerHTML = objVal[i] + "р ";
 
-        fieldValue.innerHTML = objVal[i] + "р ";
-        item.append(fieldKey);
-        item.append(fieldValue);
-      }
 
       if (objKeys[i] === "mileage") {
-        const item = document.createElement("div");
-        item.className = "item";
-        itemWrapper.append(item);
-
         fieldValue.innerHTML = objVal[i] + "км ";
         fieldMileageCalc.innerHTML = "проехал: " + currentMileage[index] + "км";
 
         itemWrapper.append(fieldMileageCalc);
-
-        item.append(fieldKey);
-        item.append(fieldValue);
       }
 
     }
   });
 }
-
-// сколько проехал
-// кол топлива на 100км
-// кол топлива на 1км
