@@ -13,8 +13,7 @@ body {
 }
 
 
-/*********** В HTML ***********/
-
+/*********** Селекторы находятся В HTML ***********/
 .flex-wrapper {
   
 }
@@ -23,8 +22,8 @@ body {
   margin: 3rem 0;
 }
 
-/*********** ГЕНЕРИРУЮТСЯ ***********/
 
+/*********** Селекторы ГЕНЕРИРУЮТСЯ в JavaScript ***********/
 .item-wrapper {
   display: grid;
   grid-template-columns: repeat(6, 18rem);

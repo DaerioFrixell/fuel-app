@@ -1,18 +1,18 @@
 "use strict";
 
 const allMonthes = [
-  'jan',
-  'feb',
-  'mar',
-  'apr',
-  'may',
-  'june',
-  'july',
-  'aug',
-  'sept',
-  'oct',
-  'nov',
-  'dec',
+  "jan",
+  "feb",
+  "mar",
+  "apr",
+  "may",
+  "june",
+  "july",
+  "aug",
+  "sept",
+  "oct",
+  "nov",
+  "dec",
 ];
 
 /**
@@ -24,14 +24,14 @@ const elements = form.elements;
 /**
  * Узел, где отображаются данные
  */
-const content = document.getElementById('content');
+const content = document.getElementById("content");
 
 /**
  * Данные из localStorage.
  * 
  * @type Array
  */
-const locStorData = JSON.parse(localStorage.getItem('form'));
+const locStorData = JSON.parse(localStorage.getItem("form"));
 
 /**
  * Отправляет данные на сервер и добавляет в localStorage.
@@ -81,7 +81,7 @@ const toSubmit = (e) => {
     requestData.push(initObjectForm)
   }
 
-  localStorage.setItem('form', JSON.stringify(requestData));
+  localStorage.setItem("form", JSON.stringify(requestData));
 
   location.reload();
 }
@@ -116,18 +116,24 @@ if (locStorData) {
     }
 
     for (let i = 0; i < objKeys.length; i++) {
-      const fieldKey = document.createElement('span');
-      const fieldValue = document.createElement('span');
+      const fieldKey = document.createElement("span");
+      const fieldValue = document.createElement("span");
 
       fieldKey.innerHTML = objKeys[i] + ": ";
       fieldValue.innerHTML = objVal[i] + " ";
 
-      fieldKey.className = "item-key"
-      fieldValue.className = "item-value"
+      fieldKey.className = "item-key";
+      fieldValue.className = "item-value";
 
-      const fieldMileageCalc = document.createElement('span');
-      const fieldCountVbyMil = document.createElement('span');
+      const fieldMileageCalc = document.createElement("span");
+      /**
+       * Поле с количеством километров на 1 литр.
+       */
+      const countKmPerLiterField = document.createElement("span");
 
+      /**
+       * Нода для элемента вида <key: value>.
+       */
       const item = document.createElement("div");
       item.className = "item";
       itemWrapper.append(item);
@@ -135,8 +141,9 @@ if (locStorData) {
       item.append(fieldKey);
       item.append(fieldValue);
 
+      // Настройка поля с датой.
       if (objKeys[i] === "day") {
-        const date = new Date(objVal[i])
+        const date = new Date(objVal[i]);
 
         const day = date.getDate();
 
@@ -144,31 +151,36 @@ if (locStorData) {
         const month = allMonthes[monthNumber];
 
         const fullYear = date.getFullYear();
-        const year = String(fullYear).slice(2)
+        const year = String(fullYear).slice(2);
 
-        const finallyDate = `${day} ${month} ${year}`
-        fieldValue.innerHTML = finallyDate
+        const finallyDate = `${day} ${month} ${year}`;
+
+        fieldValue.innerHTML = finallyDate;
       }
 
+      // Настройка поля с количеством заправленного топлива.
       if (objKeys[i] === "fuelCount") {
-        let calcLitr = currentMileage[index] / objVal[i];
+        fieldValue.innerHTML = objVal[i] + "л";
 
-        fieldCountVbyMil.innerHTML = "На 1 литр: " + Math.round(calcLitr) + "км ";
-        itemWrapper.append(fieldCountVbyMil);
+        let calcLiters = currentMileage[index] / objVal[i];
+        countKmPerLiterField.innerHTML = "На 1 литр: " + Math.round(calcLiters) + "км";
 
-        fieldValue.innerHTML = objVal[i] + "л ";
+        itemWrapper.append(countKmPerLiterField);
       }
 
-      if (objKeys[i] === "price") fieldValue.innerHTML = objVal[i] + "р ";
+      // Настройка поля с ценой за заправку.
+      if (objKeys[i] === "price") {
+        fieldValue.innerHTML = objVal[i] + "руб";
+      }
 
-
+      // Настройка поля с киламетражем.
       if (objKeys[i] === "mileage") {
-        fieldValue.innerHTML = objVal[i] + "км ";
+        fieldValue.innerHTML = objVal[i] + "км";
+
         fieldMileageCalc.innerHTML = "проехал: " + currentMileage[index] + "км";
 
         itemWrapper.append(fieldMileageCalc);
       }
-
     }
   });
 }
