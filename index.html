@@ -11,33 +11,35 @@
 </head>
 
 <body>
-  <section class="flex-wrapper">
-    <form action="" name="onlyForm">
+  <section class="wrapper">
+    <form class="form" action="" name="onlyForm">
       <div class="field"> 
-        <p>укажите день заправки</p>
+        <label class="label-form">Укажите день заправки</label>
 
-        <input type="date" value="2024-02-22">
+        <input class="input-form" type="date">
       </div>
 
       <div class="field"> 
-        <p>укажите количество топлива</p>
+        <label class="label-form">Укажите количество топлива</label>
 
-        <input type="number" placeholder="количество топлива">
+        <input class="input-form" type="number" placeholder="количество топлива">
       </div>
 
       <div class="field"> 
-        <p>укажите итоговую стоимость</p>
+        <label class="label-form">Укажите итоговую стоимость</label>
 
-        <input type="number" placeholder="итоговая стоимость">
+        <input class="input-form" type="number" placeholder="итоговая стоимость">
       </div>
 
       <div class="field"> 
-        <p>укажите текущий пробег</p>
+        <label class="label-form">Укажите текущий пробег</label>
 
-        <input type="number" placeholder="текущий пробег">
+        <input class="input-form" type="number" placeholder="текущий пробег">
       </div>
 
-      <button id="btn" type="submit">добавить данные о заправке</button>
+      <div class="btn-wrapper">
+        <button class="btn-form" id="btn" type="submit">добавить</button>
+      </div>
     </form>
   </section>
 

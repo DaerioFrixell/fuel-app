@@ -76,9 +76,9 @@ const toSubmit = (e) => {
   }
 
   if (locStorData) {
-    requestData = [...locStorData, initObjectForm]
+    requestData = [...locStorData, initObjectForm];
   } else {
-    requestData.push(initObjectForm)
+    requestData.push(initObjectForm);;
   }
 
   localStorage.setItem("form", JSON.stringify(requestData));
@@ -110,7 +110,7 @@ if (locStorData) {
     const objVal = Object.values(el);
 
     if (index === 0) {
-      currentMileage.push(0)
+      currentMileage.push(0);
     } else {
       currentMileage.push(locStorData[index].mileage - locStorData[index - 1].mileage);
     }

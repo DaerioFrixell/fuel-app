@@ -3,8 +3,14 @@
   padding: 0;
 }
 
+button, input {
+  margin: 0;
+  padding: 0;
+}
+
 html{
   font-size: 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -12,14 +18,89 @@ body {
   margin: .5rem;
 }
 
+/* Убрать стрелки из Input number. */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
 
 /*********** Селекторы находятся В HTML ***********/
-.flex-wrapper {
-  
+.wrapper {
+  width: 25rem;
+  margin: auto;
+}
+
+.form {
+  margin-top: 3rem;
+  width: 24rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+  width: inherit;
+}
+
+.label-form {
+  color: rgb(1, 1, 122);
+  font-size: 1.6rem;
+  margin-bottom: .5rem;
+}
+
+.input-form {
+  width: calc(100% - 1.4rem);
+  height: 2.6rem;
+  font-size: 1.6rem;
+  padding: .5rem;
+  outline: none;
+  border: .2rem solid rgba(0, 0, 0, 0.2);
+}
+
+.input-form:focus {
+  border: 2px solid rgba(17, 1, 89, 0.662);
+  color: #3333338b;
+}
+
+.input-form::placeholder {
+  font-size: 1.4rem;
+  color: #333333c8;
+}
+
+.btn-wrapper {
+  width: 16rem;
+  height: 3.6rem;
+  margin: auto;
+  margin-top: 3rem;  
+  background-color: rgba(17, 179, 9, 0.886);
+  transition: all .3s;
+}
+
+.btn-wrapper:hover {
+  background-color: rgba(123, 200, 119, 0.855);
+}
+
+.btn-form {
+  color: white;
+  width: 100%;
+  height: 100%;
+  font-size: 1.8rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .content {
-  margin: 3rem 0;
+  width: 110rem;
+  margin: auto;
+  margin-top: 3rem;
 }
 
 
@@ -27,17 +108,20 @@ body {
 .item-wrapper {
   display: grid;
   grid-template-columns: repeat(6, 18rem);
+  
+  align-content: center;
+}
+
+.item-wrapper:hover {
+ color: rgb(93, 69, 246);
+ cursor: default;
 }
 
 .item {
   width: 18rem;
   margin-bottom: 2rem;
-  /* border: 1px solid red; */
 }
 
-.item-key {
-}
+.item-key {}
 
-.item-value {
-
-}
+.item-value {}
