@@ -1,9 +1,16 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
+import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 
 
-export default (env: any) => {
+export type mode_T = 'production' | 'development';
+
+export type env_T = {
+  mode: mode_T
+}
+
+export default (env: env_T) => {
   const config: webpack.Configuration = {
     mode: env.mode ?? "production",
     entry: path.resolve(__dirname, 'src', 'index.ts'),
@@ -30,6 +37,9 @@ export default (env: any) => {
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
     },
+    devServer: {
+      open: true
+    }
   }
 
   return config;
