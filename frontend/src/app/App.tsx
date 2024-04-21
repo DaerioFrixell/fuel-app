@@ -1,4 +1,6 @@
 import { FC, useState } from "react";
+import "./app.scss";
+import { Link, Outlet } from "react-router-dom";
 
 
 export const App: FC = () => {
@@ -10,9 +12,17 @@ export const App: FC = () => {
 
   return (
     <div>
-      count {counter}
+      <Link to={"/about"} >about</Link>
+      <br />
+      <Link to={"/user"} >user</Link>
 
-      <button onClick={fn}>up</button>
+      <p>count {counter}</p>
+
+      <button className="asd" onClick={fn}>
+        <p className="asd__qwe">up</p>
+      </button>
+
+      <Outlet />
     </div>
   )
 }

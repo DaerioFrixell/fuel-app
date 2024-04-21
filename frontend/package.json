@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "webpack --config webpack.config.ts",
+    "build-dev": "webpack --config webpack.config.ts --env mode=development",
+    "build-prod": "webpack --config webpack.config.ts --env mode=production",
     "start-dev": "webpack serve --env mode=development",
-    "start-prod": "webpack serve --env mode=production"
+    "start-prod": "webpack serve --env mode=production",
+    "analyzer": "webpack serve --env mode=production analyzer=true"
   },
   "author": "",
   "license": "ISC",
@@ -15,17 +17,25 @@
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "@types/webpack": "^5.28.5",
+    "@types/webpack-bundle-analyzer": "^4.7.0",
     "@types/webpack-dev-server": "^4.7.2",
+    "css-loader": "^7.1.1",
     "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.9.0",
+    "sass": "^1.75.0",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
   }
 }
