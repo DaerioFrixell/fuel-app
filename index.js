@@ -43,6 +43,7 @@ const toSubmit = (e) => {
    * Массив с данными, который отправиться на бэк и localStorage.
    * 
    * @type Array
+   * @todo LEGASY Исправить на const.
    */
   let requestData = [];
   /**
