@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import "./app.scss";
 import { Link, Outlet } from "react-router-dom";
+import AboutPage from "@/pages/about/About";
 
 
 export const App: FC = () => {
@@ -21,6 +22,8 @@ export const App: FC = () => {
       <button className="asd" onClick={fn}>
         <p className="asd__qwe">up</p>
       </button>
+
+      <AboutPage />
 
       <Outlet />
     </div>
