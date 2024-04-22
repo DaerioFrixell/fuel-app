@@ -1,6 +1,6 @@
 import { Configuration } from 'webpack';
-import { buildWebpack } from './config/build/buildWebpack';
-import { BuildMode_T, BuildPaths_T } from './config/build/types/types';
+import { buildWebpack } from './config/setting/buildWebpack';
+import { BuildMode_T, BuildPaths_T } from './config/setting/types/types';
 import path from 'path';
 
 
