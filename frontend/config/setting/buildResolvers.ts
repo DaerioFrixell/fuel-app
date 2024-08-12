@@ -1,8 +1,8 @@
 import { Configuration } from "webpack";
-import { BuildOptions_T } from "./types/types";
+import { BuildOptionsType } from "./types";
 
 
-export const buildResolvers = (options: BuildOptions_T): Configuration['resolve'] => {
+export const buildResolvers = (options: BuildOptionsType): Configuration['resolve'] => {
   return {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {

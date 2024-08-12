@@ -5,16 +5,18 @@ export const babelLoader = (isDev: boolean) => {
     exclude: /node_modules/,
     use: {
       loader: "babel-loader",
-      presets: [
-        '@babel/preset-env',
-        '@babel/preset-typescript',
-        [
-          '@babel/preset-react',
-          {
-            runtime: isDev ? 'automatic' : 'classic',
-          }
+      options: {
+        presets: [
+          '@babel/preset-env',
+          '@babel/preset-typescript',
+          [
+            '@babel/preset-react',
+            {
+              runtime: isDev ? 'automatic' : 'classic',
+            }
+          ]
         ]
-      ]
+      }
     }
   }
 }

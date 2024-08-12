@@ -1,16 +1,16 @@
-export type BuildPaths_T = {
+export type BuildPathsType = {
   entry: string
   html: string
   output: string
   src: string
 }
 
-export type BuildMode_T = 'production' | 'development';
+export type BuildModeType = 'production' | 'development';
 
-export type BuildOptions_T = {
+export type BuildOptionsType = {
   port: number
-  paths: BuildPaths_T
-  mode: BuildMode_T
+  paths: BuildPathsType
+  mode: BuildModeType
 
   analyzer?: boolean
 }

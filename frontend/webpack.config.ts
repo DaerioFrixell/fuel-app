@@ -1,18 +1,17 @@
 import { Configuration } from 'webpack';
 import { buildWebpack } from './config/setting/buildWebpack';
-import { BuildMode_T, BuildPaths_T } from './config/setting/types/types';
+import { BuildModeType, BuildPathsType } from './config/setting/types';
 import path from 'path';
 
 
-export type env_T = {
-  mode: BuildMode_T
+export type envType = {
+  mode: BuildModeType
   port: number
-
   analyzer?: boolean
 }
 
-export default (env: env_T) => {
-  const paths: BuildPaths_T = {
+export default (env: envType) => {
+  const paths: BuildPathsType = {
     entry: path.resolve(__dirname, "src", "index.tsx"),
     html: path.resolve(__dirname, "public", "index.html"),
     output: path.resolve(__dirname, "build"),

@@ -1,7 +1,7 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { Configuration, ProgressPlugin } from "webpack";
-import { BuildOptions_T } from "./types/types";
+import { BuildOptionsType } from "./types";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
@@ -11,7 +11,7 @@ export const buildPlugins = ({
   mode,
   paths,
   analyzer
-}: BuildOptions_T): Configuration['plugins'] => {
+}: BuildOptionsType): Configuration['plugins'] => {
   const isDev = mode === "development";
   const isProd = mode === "production";
 
