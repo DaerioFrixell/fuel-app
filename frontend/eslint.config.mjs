@@ -1,11 +1,11 @@
-import { fileURLToPath } from 'url';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 
 import { fixupPluginRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import eslintJs from '@eslint/js';
-import eslintTs from 'typescript-eslint';
 import eslintReact from "eslint-plugin-react";
+import eslintTs from 'typescript-eslint';
 
 
 const project = "./tsconfig.json";
@@ -76,9 +76,12 @@ export default eslintTs.config(
             "no-with": 2,
             "prefer-template": 2,
             "prefer-const": 2,
-            "sort-imports": [2, { "memberSyntaxSortOrder": ['none', 'all', 'single', 'multiple'] }],
             "react/jsx-first-prop-new-line": [2, 'multiline'],
-            "import/order": [2, { "newlines-between": "always", }],
+            "import/order": [2, {
+                "groups": ["builtin", "external"],
+                "newlines-between": "always",
+                "alphabetize": { "order": "asc", "caseInsensitive": true }
+            }],
             "import/newline-after-import": [2, { "count": 2, }],
         },
     },

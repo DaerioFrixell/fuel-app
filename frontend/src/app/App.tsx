@@ -1,9 +1,8 @@
+import "./app.scss";
 import { FC, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 import AboutPage from "@/pages/about/About";
-
-import "./app.scss";
 
 
 export const App: FC = () => {
