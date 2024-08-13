@@ -1,15 +1,17 @@
 import { FC, useState } from "react";
-import "./app.scss";
 import { Link, Outlet } from "react-router-dom";
+
 import AboutPage from "@/pages/about/About";
+
+import "./app.scss";
 
 
 export const App: FC = () => {
   const [counter, setCouter] = useState(0);
 
   const fn = () => {
-    setCouter(counter + 1)
-  }
+    setCouter(counter + 1);
+  };
 
   return (
     <div>
@@ -27,5 +29,5 @@ export const App: FC = () => {
 
       <Outlet />
     </div>
-  )
-}
+  );
+};

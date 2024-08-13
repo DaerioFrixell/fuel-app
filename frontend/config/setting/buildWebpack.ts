@@ -25,6 +25,7 @@ export function buildWebpack(options: BuildOptionsType): Configuration {
     resolve: buildResolvers(options),
     devtool: isDev ? 'inline-source-map' : false,
     devServer: isDev ? buildDevServer(options) : undefined,
+    cache: false,
     // TODO: Разделить на чанки до 244кб, тогда <performance> можно убрать.
     performance: {
       maxEntrypointSize: 512000,
