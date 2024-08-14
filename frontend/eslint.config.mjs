@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { fixupPluginRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import eslintJs from '@eslint/js';
+import eslintConfigPrettier from "eslint-config-prettier";
 import eslintReact from "eslint-plugin-react";
 import eslintTs from 'typescript-eslint';
 
@@ -30,6 +31,7 @@ export default eslintTs.config(
     eslintJs.configs.recommended,
     ...eslintTs.configs.recommended,
     ...compat.extends("plugin:import/typescript"),
+    eslintConfigPrettier,
     {
         languageOptions: {
             parserOptions: {
@@ -49,6 +51,7 @@ export default eslintTs.config(
             react: eslintReact,
             import: legacyPlugin("eslint-plugin-import", "import"),
         },
+        ignores: ["node_modules"]
     },
     {
         rules: {
@@ -83,6 +86,12 @@ export default eslintTs.config(
                 "alphabetize": { "order": "asc", "caseInsensitive": true }
             }],
             "import/newline-after-import": [2, { "count": 2, }],
+            "prettier/prettier": [
+                "error",
+                {
+                    "trailingComma": 'all',
+                }
+            ]
         },
     },
 );
