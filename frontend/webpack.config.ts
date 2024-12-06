@@ -1,31 +1,38 @@
-import webpack from 'webpack';
-import { buildWebpack } from './config/setting/buildWebpack';
-import { BuildModeType, BuildPathsType } from './config/setting/types';
+
 import path from 'path';
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-
-export type envType = {
-  mode: BuildModeType
-  port: number
-  analyzer?: boolean
-}
-
-const config = (env: envType) => {
-  const paths: BuildPathsType = {
-    entry: path.resolve(__dirname, "src", "index.tsx"),
-    html: path.resolve(__dirname, "public", "index.html"),
-    output: path.resolve(__dirname, "build"),
-    src: path.resolve(__dirname, "src"),
-  };
-
-  const config: webpack.Configuration = buildWebpack({
-    port: env.port ?? 3300,
-    mode: env.mode ?? "development",
-    paths,
-    analyzer: env.analyzer
-  })
-
-  return config;
-}
-
-export default config;
+export default {
+  entry: './src/index.ts', // Точка входа
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+    ]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    }),
+  ],
+  devtool: 'source-map',
+  mode: 'development',
+};
